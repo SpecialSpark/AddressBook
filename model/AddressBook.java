@@ -1,6 +1,7 @@
-//package addressBook.model;
+//package model;
 
 import java.util.List;
+
 
 public class AddressBook {
     private List<Contact> contactList;
@@ -22,5 +23,10 @@ public class AddressBook {
 
     public List<Contact> getContactList(){
         return this.contactList;
+    }
+
+    public void addContact(){
+        Contact contact = new Contact();
+        this.contactList.add(contact);
     }
 }

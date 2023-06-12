@@ -1,4 +1,4 @@
-//package addressBook.model;
+//package model;
 
 public class Address {
     
