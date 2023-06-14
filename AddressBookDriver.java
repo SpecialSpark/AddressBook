@@ -39,13 +39,9 @@ public class AddressBookDriver {
                 case "view": /* View List of Contacts */;
                 break;
 
-                case "remove": /* Remove Contact */;
-                break;
-
                 default : System.out.println("end - close the program");
                     System.out.println("create - construct a contact");
                     System.out.println("view - look at the contact");
-                    System.out.println("remove - delete a contact");;
                 break;
             }
 
@@ -163,6 +159,16 @@ public class AddressBookDriver {
         for(int i = 0; contactList.size() < 0; i += 1){
             listOContacts += contactList.get(i).getName().getFirstName() + " ";
             listOContacts += contactList.get(i).getName().getLastName() + "\n";
+
+            listOContacts += contactList.get(i).getPhoneNumber() + "\n";
+
+            listOContacts += contactList.get(i).getEmail() + "\n";
+
+            listOContacts += getMailingAddress() + "\n";
+
+            listOContacts += getHomeAddress() + "\n";
+
+            listOContacts += getWorkAddresss() + "\n";
         }
 
         return listOContacts;
