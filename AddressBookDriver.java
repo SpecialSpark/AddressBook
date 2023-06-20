@@ -1,5 +1,6 @@
 //package addressBook;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 //import model.AddressBook;
@@ -17,10 +18,11 @@ public class AddressBookDriver {
         addressBook  = AddressBook.getInstance();
         List<Contact> contactList = addressBook.getContactList();
 
+        
+
         System.out.println("end - close the program");
         System.out.println("create - construct a contact");
         System.out.println("view - look at the contact");
-        System.out.println("remove - delete a contact");
 
         do {
 
@@ -51,7 +53,12 @@ public class AddressBookDriver {
     }
 
     public static List<Contact> createContact(List<Contact> contactList){
-        Contact contact = new Contact();
+
+        List<Address> addresses = new ArrayList<Address>(3);
+        addresses.add(0, new Address('M',"","","",""));
+        addresses.add(1, new Address('H',"","","",""));
+        addresses.add(2, new Address('W',"","","",""));
+        Contact contact = new Contact(new Name("", ""), "","", addresses);
         
         System.out.println("give first name");
         userInput = user.nextLine();
@@ -164,14 +171,49 @@ public class AddressBookDriver {
 
             listOContacts += contactList.get(i).getEmail() + "\n";
 
-            listOContacts += getMailingAddress() + "\n";
+            listOContacts += getMailingAddressString(contactList,i) + "\n";
 
-            listOContacts += getHomeAddress() + "\n";
+            listOContacts += getHomeAddressString(contactList,i) + "\n";
 
-            listOContacts += getWorkAddresss() + "\n";
+            listOContacts += getWorkAddressString(contactList, i) + "\n";
+
+            listOContacts += "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
         }
 
         return listOContacts;
+    }
+
+    public String getMailingAddressString(List<Contact> contactList,int i){
+        String mailingAddressString = "\n mailing address";
+        
+        mailingAddressString += "   " +  contactList.get(i).getAddresses().get(0).getZipAddress();
+        mailingAddressString += "   " + contactList.get(i).getAddresses().get(0).getStreetAddress(); 
+        mailingAddressString += "   " +  contactList.get(i).getAddresses().get(0).getCityAddress();
+        mailingAddressString += "   " + contactList.get(i).getAddresses().get(0).getStateAddress();
+
+        return mailingAddressString;
+    }
+
+    public String getHomeAddressString(List<Contact> contactList,int i){
+        String homeAddressString = "\n home address";
+        
+        homeAddressString += "   " +  contactList.get(i).getAddresses().get(1).getZipAddress();
+        homeAddressString += "   " + contactList.get(i).getAddresses().get(1).getStreetAddress(); 
+        homeAddressString += "   " +  contactList.get(i).getAddresses().get(1).getCityAddress();
+        homeAddressString += "   " + contactList.get(i).getAddresses().get(1).getStateAddress();
+
+        return homeAddressString;
+    }
+
+    public String getWorkAddressString(List<Contact> contactList,int i){
+        String workAddressString = "\n wprk address";
+        
+        workAddressString += "   " +  contactList.get(i).getAddresses().get(2).getZipAddress();
+        workAddressString += "   " + contactList.get(i).getAddresses().get(2).getStreetAddress(); 
+        workAddressString += "   " +  contactList.get(i).getAddresses().get(2).getCityAddress();
+        workAddressString += "   " + contactList.get(i).getAddresses().get(2).getStateAddress();
+
+        return workAddressString;
     }
 
     
