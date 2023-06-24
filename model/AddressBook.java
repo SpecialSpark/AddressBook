@@ -1,10 +1,11 @@
 //package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class AddressBook {
-    private List<Contact> contactList;
+    private List<Contact> contactList = new ArrayList<Contact>();
 
     public static AddressBook addressBook;
 

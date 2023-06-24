@@ -16,11 +16,11 @@ public class Address {
 
     }
 
-    private String zipAddress;
-    private String streetAddress;
-    private String cityAddress;
-    private String stateAddress;
-    private AddressType addressType;
+    private String zipAddress = "";
+    private String streetAddress = "";
+    private String cityAddress = "";
+    private String stateAddress = "";
+    private AddressType addressType = AddressType.home;
 
 
     public Address(){

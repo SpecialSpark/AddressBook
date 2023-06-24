@@ -7,6 +7,7 @@ import java.util.Scanner;
 //import model.Contact;
 
 
+
 public class AddressBookDriver {
     private static Scanner user = new Scanner(System.in);
     private static String userInput;
@@ -38,7 +39,7 @@ public class AddressBookDriver {
                 case "create": contactList = createContact(contactList);
                 break;
 
-                case "view": /* View List of Contacts */;
+                case "view": System.out.println(viewContact(contactList));
                 break;
 
                 default : System.out.println("end - close the program");
@@ -55,7 +56,7 @@ public class AddressBookDriver {
     public static List<Contact> createContact(List<Contact> contactList){
 
         List<Address> addresses = new ArrayList<Address>(3);
-        addresses.add(0, new Address('M',"","","",""));
+        addresses.add(0, new Address( 'M',"","","",""));
         addresses.add(1, new Address('H',"","","",""));
         addresses.add(2, new Address('W',"","","",""));
         Contact contact = new Contact(new Name("", ""), "","", addresses);
@@ -160,7 +161,7 @@ public class AddressBookDriver {
         return workAddress;
     }
 
-    public String viewContact(List<Contact> contactList){
+    public static String viewContact(List<Contact> contactList){
         String listOContacts = "";
 
         for(int i = 0; contactList.size() < 0; i += 1){
@@ -183,7 +184,7 @@ public class AddressBookDriver {
         return listOContacts;
     }
 
-    public String getMailingAddressString(List<Contact> contactList,int i){
+    public static String getMailingAddressString(List<Contact> contactList,int i){
         String mailingAddressString = "\n mailing address";
         
         mailingAddressString += "   " +  contactList.get(i).getAddresses().get(0).getZipAddress();
@@ -194,7 +195,7 @@ public class AddressBookDriver {
         return mailingAddressString;
     }
 
-    public String getHomeAddressString(List<Contact> contactList,int i){
+    public static String getHomeAddressString(List<Contact> contactList,int i){
         String homeAddressString = "\n home address";
         
         homeAddressString += "   " +  contactList.get(i).getAddresses().get(1).getZipAddress();
@@ -205,7 +206,7 @@ public class AddressBookDriver {
         return homeAddressString;
     }
 
-    public String getWorkAddressString(List<Contact> contactList,int i){
+    public static String getWorkAddressString(List<Contact> contactList,int i){
         String workAddressString = "\n wprk address";
         
         workAddressString += "   " +  contactList.get(i).getAddresses().get(2).getZipAddress();
