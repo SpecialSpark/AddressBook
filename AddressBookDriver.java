@@ -37,12 +37,16 @@ public class AddressBookDriver {
 
             switch(userInput){
                 case "create": contactList = createContact(contactList);
+                    System.out.println("end - close the program");
+                    System.out.println("create - construct a contact");
+                    System.out.println("view - look at the contact");
                 break;
 
                 case "view": System.out.println(viewContact(contactList));
                 break;
 
-                default : System.out.println("end - close the program");
+                default :
+                    System.out.println("end - close the program");
                     System.out.println("create - construct a contact");
                     System.out.println("view - look at the contact");
                 break;
@@ -86,6 +90,9 @@ public class AddressBookDriver {
         System.out.println("Home address created");
 
         contact.getAddresses().add(createWorkAddress());
+        System.out.println(contact.getAddresses().get(0).getZipAddress());
+        System.out.println(contact.getAddresses().get(1).getZipAddress());
+        System.out.println(contact.getAddresses().get(2).getZipAddress());
 
         System.out.println("Work address created");
 
@@ -96,7 +103,7 @@ public class AddressBookDriver {
     }
 
     public static Address createMailingAddress(){
-        Address mailingAddress = new Address();
+        Address mailingAddress = new Address('M',"","","","");
 
         System.out.println("give zip of mailing address");
         userInput = user.nextLine();
@@ -118,7 +125,7 @@ public class AddressBookDriver {
     }
 
     public static Address createHomeAddress(){
-        Address homeAddress = new Address();
+        Address homeAddress = new Address('H',"","","","");
 
         System.out.println("give zip of home address");
         userInput = user.nextLine();
@@ -140,7 +147,7 @@ public class AddressBookDriver {
     }
 
     public static Address createWorkAddress(){
-        Address workAddress = new Address();
+        Address workAddress = new Address('W',"","","","");
 
         System.out.println("give zip of work address");
         userInput = user.nextLine();
@@ -164,8 +171,8 @@ public class AddressBookDriver {
     public static String viewContact(List<Contact> contactList){
         String listOContacts = "";
 
-        for(int i = 0; contactList.size() < 0; i += 1){
-            listOContacts += contactList.get(i).getName().getFirstName() + " ";
+        for(int i = 0; contactList.size() > i; i += 1){
+            listOContacts += "\n" + contactList.get(i).getName().getFirstName() + " ";
             listOContacts += contactList.get(i).getName().getLastName() + "\n";
 
             listOContacts += contactList.get(i).getPhoneNumber() + "\n";
@@ -185,37 +192,36 @@ public class AddressBookDriver {
     }
 
     public static String getMailingAddressString(List<Contact> contactList,int i){
-        String mailingAddressString = "\n mailing address";
+        String mailingAddressString = "Mailing address: ";
         
-        mailingAddressString += "   " +  contactList.get(i).getAddresses().get(0).getZipAddress();
-        mailingAddressString += "   " + contactList.get(i).getAddresses().get(0).getStreetAddress(); 
-        mailingAddressString += "   " +  contactList.get(i).getAddresses().get(0).getCityAddress();
-        mailingAddressString += "   " + contactList.get(i).getAddresses().get(0).getStateAddress();
+        System.out.println(contactList.get(i).getAddresses().get(0).getZipAddress().length());
+        mailingAddressString += "\n   Zip:   " +  contactList.get(i).getAddresses().get(0).getZipAddress();
+        mailingAddressString += "\n   Street:   " + contactList.get(i).getAddresses().get(0).getStreetAddress(); 
+        mailingAddressString += "\n   City:   " +  contactList.get(i).getAddresses().get(0).getCityAddress();
+        mailingAddressString += "\n   State:   " + contactList.get(i).getAddresses().get(0).getStateAddress();
 
         return mailingAddressString;
     }
 
     public static String getHomeAddressString(List<Contact> contactList,int i){
-        String homeAddressString = "\n home address";
+        String homeAddressString = "Home address: ";
         
-        homeAddressString += "   " +  contactList.get(i).getAddresses().get(1).getZipAddress();
-        homeAddressString += "   " + contactList.get(i).getAddresses().get(1).getStreetAddress(); 
-        homeAddressString += "   " +  contactList.get(i).getAddresses().get(1).getCityAddress();
-        homeAddressString += "   " + contactList.get(i).getAddresses().get(1).getStateAddress();
+        homeAddressString += "\n   Zip:   " +  contactList.get(i).getAddresses().get(1).getZipAddress();
+        homeAddressString += "\n   Street:   " + contactList.get(i).getAddresses().get(1).getStreetAddress(); 
+        homeAddressString += "\n   City:   " +  contactList.get(i).getAddresses().get(1).getCityAddress();
+        homeAddressString += "\n   State:   " + contactList.get(i).getAddresses().get(1).getStateAddress();
 
         return homeAddressString;
     }
 
     public static String getWorkAddressString(List<Contact> contactList,int i){
-        String workAddressString = "\n wprk address";
+        String workAddressString = "Work address: ";
         
-        workAddressString += "   " +  contactList.get(i).getAddresses().get(2).getZipAddress();
-        workAddressString += "   " + contactList.get(i).getAddresses().get(2).getStreetAddress(); 
-        workAddressString += "   " +  contactList.get(i).getAddresses().get(2).getCityAddress();
-        workAddressString += "   " + contactList.get(i).getAddresses().get(2).getStateAddress();
+        workAddressString += "\n   Zip:   " +  contactList.get(i).getAddresses().get(2).getZipAddress();
+        workAddressString += "\n   Street:   " + contactList.get(i).getAddresses().get(2).getStreetAddress(); 
+        workAddressString += "\n   City:   " +  contactList.get(i).getAddresses().get(2).getCityAddress();
+        workAddressString += "\n   State:   " + contactList.get(i).getAddresses().get(2).getStateAddress();
 
         return workAddressString;
     }
-
-    
 }
